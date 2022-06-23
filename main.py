@@ -15,7 +15,7 @@ class Number():
         self.number = randrange(self.range)
 
     def first_hint(self):
-        return "number is below <= "+str(self.range)
+        return "number is <= "+str(self.range)
 
     def second_hint(self):
         if self.number % 2 == 0:
