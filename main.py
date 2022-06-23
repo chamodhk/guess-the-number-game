@@ -56,19 +56,14 @@ def handle_input(hint,number):
 
 def start():
     print(banner)
-    print("""
-        Welocme to Number Guess-The Game\n
-        The Computer has chosen a number\n
-        You have to guess the number with the help of the hints provided\n
-        If you fail you are given another hint and your points will be reduced by 5 
-        """)
+    print("""Welocme to Number Guess-The Game\nThe Computer has chosen a number\nYou have to guess the number with the help of the hints provided\nIf you fail you are given another hint and your points will be reduced by 5 \n""")
 
     level=1
     points = 15
 
     while True:
 
-        print(f'LEVEL: {level}')
+        print(f'\nLEVEL: {level}\n')
 
         
         number = Number(level)
