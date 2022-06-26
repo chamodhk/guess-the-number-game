@@ -11,39 +11,61 @@ banner = '''                       __        ___ _  _
 
 class Number():
     def __init__(self,level):
+        self.level = level
         self.range = level*5
         self.number = randrange(self.range)
 
-    def first_hint(self):
-        return "number is <= "+str(self.range)
-
-    def second_hint(self):
-        if self.number % 2 == 0:
-            return "Number is even"
-
-        else:
-            return "Number is odd"
-
-    def third_hint(self):
-        param = round(self.range/2)
-        if self.number > param:
-            return f"Number is Highr than {param} "
-        else:
-            return f"Number is <= {param}"
-
-    def fourth_hint(self):
-        if self.number % 5 == 0:
-            return "The Number can be divided by 5"
-
-        else:
-            return "The number cannot be divided by 5"
-
 
     def get_hints(self):
-        return [self.first_hint(),
-                self.second_hint(),
-                self.third_hint(),
-                self.fourth_hint()]
+        hints = []
+        #GET FIRST HINT
+        hints.append("number is <= "+str(self.range))
+
+        #GET SECOND HINT
+        if self.level >=1:
+            if self.number % 2 == 0:
+                hints.append("Number is even")
+
+            else:
+                hints.append("Number is odd")
+        else:
+            pass
+
+        #GET THIRD HINT
+        if self.level >=3:
+            if self.number % 3 == 0:
+                hints.append("The Number can be divided by 3")
+            else:
+                hints.append("The Number cannot be divided by 3")
+
+        else:
+            pass
+
+        #GET FOURTH HINT
+        if self.level >=5:
+            if self.number % 5 == 0:
+                hints.append("The Number can be divided by 5")
+
+            else:
+                hints.append("The number cannot be divided by 5")
+        else: 
+            pass
+
+        #GET FIFTH HINT
+        if self.level >=6:
+            param = round(self.range/2)
+            if self.number > param:
+                hints.append(f"Number is Highr than {param} ")
+            else:
+                hints.append(f"Number is <= {param}")
+
+        else:
+            pass
+
+
+
+
+        return hints
 
 def handle_input(hint,number):
     trial = int(input("Try! ----"+ hint+" : "))
@@ -76,10 +98,10 @@ def start():
         for hint in hints:
             if handle_input(hint,number):
                 won = True
-                points += 15
+                points += 15*level
                 break
             else:
-                points -= 5
+                points -= 5*level
                 print("You're wrong! Try Again\n")
         
 
@@ -98,7 +120,7 @@ def start():
                 print("\ngoing to next level...........\n")
                 level +=1
         else:
-            print("You Lost!\n\n Total points: "+str(points)+"\n")
+            print("You Lost!\n\n Total points: "+str(points)+f"\n The chosen number was {number.number}\n\n")
             break
 
 start()
